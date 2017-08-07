@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="TestGit"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{EB74B817-DA9E-4948-9FA6-03573A564612}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{F41AEFAF-9214-468B-9014-B38F46DFA39E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,13 +27,30 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2+3kVpgk00Od8Wy9AR98wQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAC1O/B92Wn1AnZGACx9E+dpAAAAAASAAACgAAAAEAAAAB+56uGzUsXITg4bX307jW0gAAAAa0INFHGNo5Y4vskAtulVSe9cB9fgAQ5gAiz/VYoIgFMUAAAAcn7fgOmZbB+2Ty7y3o4fseUiUtQ</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2+3kVpgk00Od8Wy9AR98wQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAK9FTUMykLgy5WsTT2bDH+AAAAAASAAACgAAAAEAAAAGE98pg6629/dZ42wm6E6ewgAAAAGOVKH/YXNpnL1EdXGkWbvfeNYRvCb31tPYTQkoL/ZBEUAAAAlKZdMG67TgHMgBMRuWSeLeaOFaA</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Cleanup Test"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CCF0567F-3CFA-451F-9BE2-4D17F1535791}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Cleanup Test"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{294DB734-2C09-43B1-B232-5ABFD993A7D7}"
+          SQLTask:SqlStatementSource="truncate table [QCDMPROD].[dbo].[test_etl]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Test ETL"
       DTS:CreationName="Microsoft.Pipeline"
@@ -510,6 +527,16 @@
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FBBDEB1D-353B-46C5-9A21-AD01B2E532BC}"
+      DTS:From="Package\Test ETL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Cleanup Test" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -521,11 +548,37 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="120.571428571429,42.2857142857143"
           Id="Package\Test ETL"
           TopLeft="122.222225460005,70.7329210877065" />
+        <NodeLayout
+          Size="140.571428571429,42.2857142857143"
+          Id="Package\Cleanup Test"
+          TopLeft="108.465611338966,205.631475308249" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="180.6296326852,113.018635373421">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,92.6128399348279"
+              Start="0,0"
+              End="0,85.1128399348279">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.1128399348279" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
