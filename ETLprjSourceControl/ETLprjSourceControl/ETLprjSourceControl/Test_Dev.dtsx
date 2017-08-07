@@ -1,0 +1,75 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/7/2017 11:08:27 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HDC-WRK-M46"
+  DTS:CreatorName="HDC\YXT5937"
+  DTS:DTSID="{E406D5FD-7FA8-450E-8760-3E95820269FD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.2165.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Test_Dev"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{9C3A9C1C-223B-40E8-9A80-09EA5E55F913}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[PS-CEN-BI-01.QUOTECENTER.NET.QCDMPROD.Sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C3F3D7E7-F071-4D27-BDD0-6008F0A054EC}"
+      DTS:ObjectName="PS-CEN-BI-01.QUOTECENTER.NET.QCDMPROD.Sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=PS-CEN-BI-01.QUOTECENTER.NET;User ID=Sa;Initial Catalog=QCDMPROD;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2+3kVpgk00Od8Wy9AR98wQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADaynmKoTHBtkYIsAM608wfAAAAAASAAACgAAAAEAAAAAant5BrX9XnK4rIjjXKSX8gAAAASN/xrS0TUlWsBz8MkVKdOlyQE+ZDNS5/OibVvIivSIAUAAAAzj7/1wfxUJH6tyOtAeQP/Xa1fNo</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Truncate table Test_etl"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2E5264D1-4FE6-43AC-BDF3-2012C3A25C1E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate table Test_etl"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C3F3D7E7-F071-4D27-BDD0-6008F0A054EC}"
+          SQLTask:SqlStatementSource="truncate table [QCDMPROD].[dbo].[test_etl]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="188.571428571429,42.2857142857143"
+          Id="Package\Truncate table Test_etl"
+          TopLeft="88.8888912436403,42.9565228523514" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
